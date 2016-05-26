@@ -6,7 +6,7 @@
 [![NPM version][npm-image]][npm-url]
 [![Code style][standard-image]][standard-url]
 
-Turn a dataurl into a blob in a cross-browser way
+Turn a dataurl into a blob in a cross-browser way. This code is based on [blueimp's canvas-to-blob](https://github.com/blueimp/JavaScript-Canvas-to-Blob/blob/master/js/canvas-to-blob.js), with the important difference that it is not a polyfill, and that it can be required (though not used) on the server, which makes it more friendly to server-side rendering.
 
 ## Installation
 
@@ -15,17 +15,20 @@ Turn a dataurl into a blob in a cross-browser way
 ## Usage
 
 ```js
-var dataurlToBlob = require('@f/dataurl-to-blob')
+var toBlob = require('@f/dataurl-to-blob')
 
+function canvasToBlob (canvas) {
+  return toBlob(canvas.toDataURL('image/png'))
+}
 ```
 
 ## API
 
-### dataurlToBlob(arg)
+### dataURLToBlob(dataURL)
 
-- `arg` -
+- `dataURL` - The dataURL string. This can be generated from a canvas by calling `canvas.toDataURL("image/png")`.
 
-**Returns:**
+**Returns:** A blob buffer of the raw image data
 
 ## License
 
